@@ -3,7 +3,9 @@ angular
 
   .component('search', {
     bindings: {
-      result: '<'
+      result: '<',
+      search: '<',
+      query: '<'
     },
     templateUrl: 'src/templates/search.html'
   });

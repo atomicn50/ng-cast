@@ -1,5 +1,5 @@
 angular.module('video-player').service('youTube', function($http) {
-  this.search = function() {
+  this.search = function(query, callback) {
     $http({
       method: 'GET',
       url: 'https://www.googleapis.com/youtube/v3/search',
@@ -7,13 +7,13 @@ angular.module('video-player').service('youTube', function($http) {
         part: 'snippet',
         videoEmbeddable: true,
         type: 'video',
-        q: '',
+        q: query,
         maxResults: 5,
         key: YOUTUBE_API_KEY
       }
     }).then(
       response => {
-        console.log('SUCESS', response);
+        callback(response.data);
       },
       fail => {
         console.log('FAILED', fail);
